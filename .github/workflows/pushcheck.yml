@@ -1,0 +1,27 @@
+# Notifies the pushcheck agent about each push. Drop this file into any repo
+# you want reviewed, then set:
+#   - Actions variable PUSHCHECK_URL   (the agent's deployment, no trailing slash)
+#   - Actions secret   PUSHCHECK_PASSWORD
+name: pushcheck
+
+on:
+  push:
+    branches: [main, dev]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify pushcheck agent
+        env:
+          PUSHCHECK_URL: ${{ vars.PUSHCHECK_URL }}
+          PUSHCHECK_PASSWORD: ${{ secrets.PUSHCHECK_PASSWORD }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          BEFORE: ${{ github.event.before }}
+          HEAD: ${{ github.sha }}
+        run: |
+          curl --fail --silent --show-error -X POST "$PUSHCHECK_URL/eve/v1/session" \
+            -u "pushcheck:$PUSHCHECK_PASSWORD" \
+            -H 'content-type: application/json' \
+            -d "{\"message\":\"Push to $REPO branch $BRANCH: before SHA $BEFORE, head SHA $HEAD\"}"

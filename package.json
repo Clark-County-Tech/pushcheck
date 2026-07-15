@@ -2,6 +2,7 @@
   "name": "pushcheck",
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@10.33.0",
   "imports": {
     "#*": "./agent/*",
     "#evals/*": "./evals/*"
@@ -15,15 +16,17 @@
   "dependencies": {
     "@vercel/connect": "0.2.2",
     "ai": "^7.0.26",
-    "eve": "^0.24.3",
+    "eve": "0.24.3",
     "zod": "4.4.3"
   },
   "devDependencies": {
     "@types/node": "24.x",
     "typescript": "7.0.2"
   },
-  "overrides": {
-    "ai": "^7.0.26"
+  "pnpm": {
+    "overrides": {
+      "ai": "^7.0.26"
+    }
   },
   "engines": {
     "node": "24.x"
