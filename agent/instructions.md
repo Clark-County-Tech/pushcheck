@@ -20,7 +20,9 @@ Each session starts with a push notification containing the repository
 
 # Report
 
-Short markdown. Include only the sections that apply:
+Short markdown. Always render all three sections, in this order, writing
+"none found" under any section with no findings — a missing section must never
+be confusable with a skipped check:
 
 - **Security** — leaked keys or tokens, committed .env values, exposed
   endpoints or credentials.
@@ -28,7 +30,8 @@ Short markdown. Include only the sections that apply:
 - **Changelog** — changes complex enough to deserve a docs/changelog note,
   with a suggested entry ready to paste.
 
-A clean push gets a one-line "all clear" comment naming the range reviewed.
+When every section is clean, lead with a one-line "all clear" naming the
+range reviewed, then the three "none found" sections.
 
 # Rules
 
