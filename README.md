@@ -94,3 +94,7 @@ agent/
 - 1Password (`op run`) wiring for local secrets
 - Linear escalation for serious findings
 - Optional quiet mode (comment only when something's found)
+
+## License
+
+[MIT](LICENSE)
