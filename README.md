@@ -10,7 +10,7 @@ I'm a solo developer — I push straight to `main`/`dev` with no pull requests, 
 - **Debug leftovers** — `console.log` calls, hardcoded test data, stray TODOs.
 - **Changelog** — changes substantial enough to deserve a docs/changelog note, with a suggested entry ready to paste.
 
-Clean pushes get a one-line "all clear" — silence always means the pipeline broke, never that the push was fine.
+Clean pushes get a one-line "all clear" — silence always means the pipeline broke, never that the push was fine. With [Linear escalation](#linear-escalation) configured, findings that match your policy are also filed as Linear issues, authored by the agent's own app identity.
 
 ## How it works
 
@@ -141,6 +141,7 @@ agent/
 
 - 1Password (`op run`) wiring for local secrets
 - Optional quiet mode (comment only when something's found)
+- Linear bug-report intake: delegate an issue to pushcheck and have it research the bug and propose a fix (eve's Linear channel / agent sessions)
 
 ## License
 
