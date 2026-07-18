@@ -74,7 +74,7 @@ Credentials run through [Vercel Connect](https://vercel.com/docs/connect) (beta)
 2. Install the connector into your workspace: `vercel connect open linear/pushcheck`, then under **Installations** click **Add Installation** and authorize your Linear workspace. This is the actor=app consent that lets the connector mint tokens — without it the tool fails with `App authorization required (client_installation_required)`. The dashboard's **Test App Token** button confirms it works. (Ignore **Add Trigger Destination** — that's webhooks, which pushcheck doesn't use.)
 3. Set the env vars below in Vercel and redeploy.
 
-This is a *customer-owned connector*: the OAuth app lives in your Linear workspace and you manage it. Connect bills **$3 per 10,000 token requests** — pushcheck fetches at most one token per reviewed push (cached in-process), so this rounds to pennies.
+This is a *customer-owned connector*: the OAuth app lives in your Linear workspace and you manage it. Connect bills **$3 per 10,000 token requests**. A "token request" here is a credential fetch from Connect — unrelated to model tokens. pushcheck only fetches a credential when it actually escalates, so expect roughly one request per escalated push and none for clean ones — but treat that as an estimate, not a guarantee: cold starts and eve's step re-runs can add fetches. The connector's **Usage** tab in the Vercel dashboard shows your actual numbers.
 
 Issues are authored by the pushcheck app identity. If you set `LINEAR_API_KEY` instead (the no-Connect fallback), issues are filed as the key's owner — you.
 
